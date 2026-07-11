@@ -4,3 +4,8 @@ class List < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: true
 end
+
+
+# if you want to get relevant bookmarks
+# if you have a specific intention then you need
+# has many, but otherwise you dont need

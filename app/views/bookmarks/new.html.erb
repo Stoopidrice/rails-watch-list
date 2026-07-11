@@ -1,0 +1,6 @@
+<h1><%=   %></h1>
+<%= simple_form_for @list, @bookmark do |f| %>
+  <%= f.association :movie %>
+  <pe>f.input :comment </pe>
+  <%= f.submit %>
+<% end %>
