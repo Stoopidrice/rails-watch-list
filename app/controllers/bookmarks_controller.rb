@@ -1,29 +1,37 @@
 class BookmarksController < ApplicationController
- def new
-    @list = List.find(params[:list_id])
+  def new
+    # prepare an empty instance of Bookmark so simple form can render the form
     @bookmark = Bookmark.new
+    # prepare the instance of List using the param in the URL
+    @list = List.find(params[:list_id])
   end
 
   def create
+    # make an instance of bookmark with the permitted params
+    @bookmark = Bookmark.new(bookmark_params)
+    # associate the bookmark we made to the list we found from the URL
+    @list = List.find(params[:list_id])
+    @bookmark.list = @list
 
-  @list = List.find(params[:list_id])
-
-  @bookmark = Bookmark.new(bookmark_params)
- # associate bookmark to the list
-  @bookmark.list = @list
-
-  if @bookmark.save
-    redirect_to list_path(@list)
-  else
-    render :new
+    if @bookmark.save
+      redirect_to list_path(@list)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
-end
+  def destroy
+    @bookmark = Bookmark.find(params[:id])
+    # define list so you can go to the list the bookmark came from
+    @list = @bookmark.list
+    @bookmark.destroy
+    redirect_to list_path(@list), status: :see_other
+  end
 
 
 private
 
-def bookmark_params
-  params.expect(:bookmar [ :movie_id, :comment ])
-end
+  def bookmark_params
+    params.expect(bookmark: [ :movie_id, :comment ])
+  end
 end

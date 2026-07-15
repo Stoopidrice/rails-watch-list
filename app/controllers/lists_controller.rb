@@ -22,10 +22,16 @@ class ListsController < ApplicationController
     end
   end
 
+  def destroy
+    @list = List.find(params[:id])
+    @list.destroy
+    redirect_to list_path, status: :see_other
+  end
+
 private
 
-def list_params
-  params.require(:list).permit(:name)
-end
-
+  def list_params
+      # params.require(:list).permit(:name) -> pre-rails 8
+      params.expect(list: [ :name ])
+  end
 end

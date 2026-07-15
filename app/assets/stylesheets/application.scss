@@ -10,3 +10,14 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/show";
+
+
+body {
+  background-color: $body-color;
+  color: $light-gray;
+}
+
+h1 {
+  color: $orange;
+}

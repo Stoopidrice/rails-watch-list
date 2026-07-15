@@ -1,1 +1,16 @@
 // Specific CSS for your home-page
+.banner {
+  background-image: asset-url("background1.webp");
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    color: $light-gray;
+    font-size: 50px;
+    font-weight: bolder;
+  }
+}

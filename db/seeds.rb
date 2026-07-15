@@ -7,25 +7,37 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 
+require "open-uri"
+require "json"
+
+
+Bookmark.destroy_all
+# destroy bookmark first because it depends on movie and list
 Movie.destroy_all
 List.destroy_all
+puts "Cleaned database"
 
-10.times do
+url = "https://tmdb.lewagon.com/movie/top_rated"
+json = URI.open(url).read
+movies = JSON.parse(json)
+
+movies["results"].each do |movie|
+  # replace with .take(10).each do if you only want 10
   Movie.create!(
-    title: Faker::Movie.title,
-    overview: Faker::Address.street_address,
-    poster_url: "https://www.imdb.com/title/tt2911666/mediaviewer/rm1723909376/?ref_=tt_ov_i",
-    rating: rand(1.0..5.0),
+  title: movie["title"],
+  overview: movie["overview"],
+  poster_url: "https://image.tmdb.org/t/p/w500#{movie["poster_path"]}",
+  # poster_path already starts with a / so you can omit it here
+  # see pp data
+  rating: movie["vote_average"],
   )
-puts "done planting seeds!"
+  puts "planted movie seed!"
 end
+
 
 10.times do
   List.create!(
-    name: Faker::Book.genre
+    name: Faker::Book.unique.genre
   )
-  puts "created genres"
+  puts "planted list seed!"
 end
-
-
-#   end

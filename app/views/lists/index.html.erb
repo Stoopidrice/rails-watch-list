@@ -1,7 +1,47 @@
-<h1>My Watchlist</h1>
+<div class ="banner mb-3">
+  <h1>Welcome to Wagon Watchlist</h1>
+</div>
+<div class="d-flex">
+  <%= link_to "Create a new list", new_list_path, class: "ms-auto me-5" %>
+</div>
+<div class="row">
+  <% @lists.each do |list| %>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= link_to list.name, list_path(list) %>
+            <%= link_to "Delete list",
+             list_path(list),
+             data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure?"
+             } %>
+          </h5>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%# # container-fluid spans the full width of the screen
+<%# # px is horizontal padding %>
+<%# # me-5 (margin-end) pulls img away from the end %>
+<%# # ms-auto only works in flex box %>
+<%# Instead of a <ul>, use Bootstrap's grid to display cards next to eachother %>
+<%# when using class write like this
+class: "ms-auto me-5"%>
+<%# the examople before is below %>
+<%# <div class ="banner">
+  <%# <h1>Welcome to Wagon Watchlist</h1>
+</div>
+<div class="container-fluid px-5">
+  <div class= "d-flex justif-content-between align-items-center mt-3 mb-3">
 
-<%= link_to "Create a new list", new_list_path %>
+    <%# <%= link_to "Create a new list", new_list_path, class: "ms-auto me-5" %>
+<%# </div>
 
-<% @lists.each do |list| %>
-  <p><%= link_to list.name, list_path(list) %></p>
-<% end %>
+
+
+        <%# <div class="col-md-4 mb-4">
+
+      <%# <li><%= link_to list.name, list_path(list) %>

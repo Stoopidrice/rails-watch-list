@@ -1,0 +1,25 @@
+.card {
+  margin-bottom: 20px;
+  transition: transform 0.4s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  img {
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-title {
+    font-weight: bold;
+  }
+
+  .card-text {
+    color: gray;
+  }
+}
