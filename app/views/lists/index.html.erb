@@ -1,22 +1,27 @@
-<div class ="banner mb-3">
-  <h1>Welcome to Wagon Watchlist</h1>
+<div class="banner mb-3">
+  <h1>Welcome to the CineMeow</h1>
 </div>
-<div class="d-flex">
-  <%= link_to "Create a new list", new_list_path, class: "ms-auto me-5" %>
+<div class="d-flex mb-3">
+  <%= link_to "Create New List", new_list_path, class: "btn btn-danger ms-auto me-5" %>
 </div>
 <div class="row">
   <% @lists.each do |list| %>
     <div class="col-md-4 mb-4">
-      <div class="card">
+      <div class="card bg-secondary rounded-3" style="width: 18rem;">
+        <% if list.photo.attached? %>
+          <%= cl_image_tag list.photo.key %>
+        <% end %>
         <div class="card-body">
-          <h5 class="card-title">
+          <h5 class="card-title d-flex justify-content-between align-items-center">
             <%= link_to list.name, list_path(list) %>
-            <%= link_to "Delete list",
-             list_path(list),
-             data: {
-              turbo_method: :delete,
-              turbo_confirm: "Are you sure?"
-             } %>
+            <%= link_to list_path(list),
+                class: "text-danger",
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH please don't delete me..."
+                } do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
           </h5>
         </div>
       </div>
@@ -45,3 +50,4 @@ class: "ms-auto me-5"%>
         <%# <div class="col-md-4 mb-4">
 
       <%# <li><%= link_to list.name, list_path(list) %>
+<%# the syntax order for adding classes to links link_to "Text", path, class: "...", data: { ... } %>

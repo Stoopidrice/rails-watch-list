@@ -1,6 +1,8 @@
 .card {
   margin-bottom: 20px;
   transition: transform 0.4s ease;
+  color: black;
+
 
   &:hover {
     transform: scale(1.1);
@@ -22,4 +24,22 @@
   .card-text {
     color: gray;
   }
+a {
+  color: black;
+  text-decoration: none;
+}
+
+}
+
+body {
+  animation: rainbow 10s linear infinite;
+}
+
+@keyframes rainbow {
+  0%   { background-color: rgb(0, 0, 0); }
+  20%  { background-color: rgb(63, 26, 57); }
+  40%  { background-color: rgb(42, 44, 13); }
+  60%  { background-color: rgb(65, 11, 53); }
+  80%  { background-color: rgb(14, 14, 102); }
+  100% { background-color: rgb(0, 0, 0); }
 }

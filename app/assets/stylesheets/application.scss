@@ -11,13 +11,21 @@
 @import "components/index";
 @import "pages/index";
 @import "pages/show";
-
+//font
 
 body {
   background-color: $body-color;
   color: $light-gray;
+  font-family: "Eater", serif;
 }
 
 h1 {
   color: $orange;
+}
+
+.footer {
+  background-color: #212529;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 20px;
 }

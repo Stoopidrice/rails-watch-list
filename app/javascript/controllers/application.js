@@ -7,3 +7,10 @@ application.debug = false
 window.Stimulus   = application
 
 export { application }
+
+const meow = new Audio("/assets/meow.mp3");
+
+document.addEventListener("click", () => {
+  meow.currentTime = 0;
+  meow.play();
+});
