@@ -33,11 +33,3 @@ movies["results"].each do |movie|
   )
   puts "planted movie seed!"
 end
-
-
-10.times do
-  List.create!(
-    name: Faker::Book.unique.genre
-  )
-  puts "planted list seed!"
-end
